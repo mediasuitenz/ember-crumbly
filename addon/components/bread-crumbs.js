@@ -86,8 +86,9 @@ export default Component.extend({
 
       assert(`[ember-crumbly] \`route:${path}\` was not found`, route);
 
+      const addSpacesToMultiWordRoutes = (str) => str.replace(/([A-Z]|[0-9])/g, ' $1').trim()
       let breadCrumb = getWithDefault(route, 'breadCrumb', {
-        title: classify(name)
+        title: addSpacesToMultiWordRoutes(classify(name))
       });
 
       if (typeOf(breadCrumb) === 'null') {
